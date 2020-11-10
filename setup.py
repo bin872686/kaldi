@@ -22,7 +22,7 @@ if kaldi_root == None:
 distutils.log.set_verbosity(distutils.log.DEBUG)
 distutils.dir_util.copy_tree(
     source_path,
-    "vosk",
+    "woasr",
     update=1,
     verbose=1)
 
@@ -61,27 +61,26 @@ else:
 
 sources = ['kaldi_recognizer.cc', 'model.cc', 'spk_model.cc', 'vosk_api.cc', 'language_model.cc', 'vosk.i']
 
-vosk_ext = Extension('vosk._vosk',
+woasr_ext = Extension('woasr._woasr',
                     define_macros = [('FST_NO_DYNAMIC_LINKING', '1')],
-                    include_dirs = [kaldi_root + '/src', kaldi_root + '/tools/openfst/include', 'vosk'],
-                    swig_opts=['-outdir', 'vosk', '-c++'],
+                    include_dirs = [kaldi_root + '/src', kaldi_root + '/tools/openfst/include', 'woasr'],
+                    swig_opts=['-outdir', 'woasr', '-c++'],
                     libraries = kaldi_libraries,
                     extra_objects = [kaldi_root + '/' + x for x in kaldi_static_libs],
-                    sources = ['vosk/' + x for x in sources],
+                    sources = ['woasr/' + x for x in sources],
                     extra_link_args = kaldi_link_args,
                     extra_compile_args = ['-std=c++11', '-Wno-sign-compare', '-Wno-unused-variable', '-Wno-unused-local-typedefs'])
 
 setuptools.setup(
-    name="vosk",
-    version="0.3.15",
-    author="Alpha Cephei Inc",
-    author_email="contact@alphacephei.com",
-    description="Offline open source speech recognition API based on Kaldi and Vosk",
+    name="woasr",
+    version="0.1",
+    author="wo",
+    description="Offline  speech recognition API based on Kaldi ",
     long_description=long_description,
     long_description_content_type="text/markdown",
     url="https://github.com/alphacep/vosk-api",
     packages=setuptools.find_packages(),
-    ext_modules=[vosk_ext],
+    ext_modules=[woasr_ext],
     cmdclass = {'build_py' : build_py},
     classifiers=[
         'Programming Language :: Python :: 3',

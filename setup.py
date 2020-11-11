@@ -78,7 +78,7 @@ setuptools.setup(
     description="Offline  speech recognition API based on Kaldi ",
     long_description=long_description,
     long_description_content_type="text/markdown",
-    url="https://github.com/alphacep/vosk-api",
+    url="https://github.com/bin872686/vosk-api.git",
     packages=setuptools.find_packages(),
     ext_modules=[woasr_ext],
     cmdclass = {'build_py' : build_py},
